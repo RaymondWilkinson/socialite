@@ -137,8 +137,9 @@ abstract class AbstractProvider implements ProviderContract
      */
     public function redirect($state = null)
     {
+	$state = $state ?: Str::random(40);
         if ($this->usesState()) {
-            $this->request->session()->set('state', $state = Str::random(40));
+            $this->request->session()->set('state', $state);
         }
 
         return new RedirectResponse($this->getAuthUrl($state));
