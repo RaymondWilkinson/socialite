@@ -142,14 +142,22 @@ abstract class AbstractProvider implements ProviderContract
     /**
      * Redirect the user of the application to the provider's authentication screen.
      *
+<<<<<<< HEAD
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+=======
+     * @param null $state
+     *
+     * @return \Illuminate\Http\RedirectResponse
+>>>>>>> Update laravel 5.4
      */
-    public function redirect()
+    public function redirect($state = null)
     {
-        $state = null;
-
         if ($this->usesState()) {
+<<<<<<< HEAD
             $this->request->session()->put('state', $state = $this->getState());
+=======
+            $this->request->getSession()->put('state', $state ?: Str::random(40));
+>>>>>>> Update laravel 5.4
         }
 
         return new RedirectResponse($this->getAuthUrl($state));
